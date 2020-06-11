@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gitopsapp
+spec:
+  replicas: 4
+  revisionHistoryLimit: 3
+  selector:
+    matchLabels:
+      app: rolloutapp
+  template:
+    metadata:
+      labels:
+        app: rolloutapp
+    spec:
+      containers:
+        - image: gcr.io/demochat101/express-microservice:d7d68eb
+          name: rolloutapp
+          ports:
+            - containerPort: 3000
