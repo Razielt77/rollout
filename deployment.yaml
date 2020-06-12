@@ -1,9 +1,9 @@
-apiVersion: apps/v1
-kind: Deployment
+apiVersion: argoproj.io/v1alpha1 # Changed from apps/v1
+kind: Rollout
 metadata:
-  name: gitopsapp
+  name: rolloutapp
 spec:
-  replicas: 4
+  replicas: 5
   revisionHistoryLimit: 3
   selector:
     matchLabels:
@@ -18,3 +18,10 @@ spec:
           name: rolloutapp
           ports:
             - containerPort: 3000
+  minReadySeconds: 30
+  strategy:
+  # ----- Everything above this comment are the same as a deployment -----
+    canary: # A new field that used to provide configurable options for a Canary strategy
+      steps:
+      - setWeight: 20
+      - pause: {}
