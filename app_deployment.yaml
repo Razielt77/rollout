@@ -1,4 +1,4 @@
-apiVersion: argoproj.io/v1alpha1 # Changed from apps/v1
+apiVersion: argoproj.io/v1alpha1
 kind: Rollout
 metadata:
   name: rolloutapp
@@ -14,14 +14,13 @@ spec:
         app: rolloutapp
     spec:
       containers:
-        - image: gcr.io/demochat101/express-microservice:d7d68eb
+        - image: gcr.io/demochat101/express-microservice:829f880
           name: rolloutapp
           ports:
             - containerPort: 3000
   minReadySeconds: 30
   strategy:
-  # ----- Everything above this comment are the same as a deployment -----
-    canary: # A new field that used to provide configurable options for a Canary strategy
+    canary:
       steps:
-      - setWeight: 50
-      - pause: {}
+        - setWeight: 50
+        - pause: {}
