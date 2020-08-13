@@ -14,13 +14,13 @@ spec:
         app: rolloutapp
     spec:
       containers:
-        - image: gcr.io/demochat101/express-microservice:3dfaba8
-          name: rolloutapp
-          ports:
-            - containerPort: 3000
+      - image: gcr.io/demochat101/express-microservice:70ba2a9
+        name: rolloutapp
+        ports:
+        - containerPort: 3000
   minReadySeconds: 30
   strategy:
     canary:
       steps:
-        - setWeight: 50
-        - pause: {}
+      - setWeight: 50
+      - pause: {}
