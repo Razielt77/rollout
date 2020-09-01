@@ -14,7 +14,7 @@ spec:
         app: rolloutapp
     spec:
       containers:
-      - image: gcr.io/demochat101/express-microservice:9265d3a
+      - image: gcr.io/demochat101/express-microservice:da0fbcd
         name: rolloutapp
         ports:
         - containerPort: 3000
